@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "outDir": "./lib",  // Compiled files will go here
+    "rootDir": "./src", // Source files are here
+    "target": "ES2019",
     "module": "commonjs",
-    "outDir": "./dist",
-    "rootDir": "./src",
     "strict": true,
-    "esModuleInterop": true, // Enable default imports
-    "skipLibCheck": true     // Skip type checks in node_modules
+    "esModuleInterop": true
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*"], // Include all files in src/
+  "exclude": ["node_modules", "**/*.test.ts"] // Exclude unnecessary files
 }
