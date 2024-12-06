@@ -43,19 +43,20 @@ jobs:
       # Create database todos with collection tasks
       - name: Create database and collection
         run: |
-          az cosmosdb sql database create --account-name copilot-nodejs-todo --resource-group rg-copilot-nodejs-todo --name todos
-          az cosmosdb sql container create --account-name copilot-nodejs-todo --resource-group rg-copilot-nodejs-todo --database-name todos --name tasks --partition-key-path /id --throughput 400
+          az cosmosdb sql database create --account-name ${{ env.COSMOS_DB_NAME }} --resource-group rg-copilot-nodejs-todo --name todos
+          az cosmosdb sql container create --account-name ${{ env.COSMOS_DB_NAME }} --resource-group rg-copilot-nodejs-todo --database-name todos --name tasks --partition-key-path /id --throughput 400
 
       # Deploy webapp using node 20
       - name: Deploy webapp
-        run: az webapp up --name copilot-nodejs-todo --resource-group rg-copilot-nodejs-todo --runtime "NODE|20 LTS"\
+        run: az webapp up --name copilot-nodejs-todo --resource-group rg-copilot-nodejs-todo --runtime "node|20-lts"
 
-      # Retrieve cosmos endpoint
-      - name: Get cosmos endpoint
-        run: echo "::set-output name=cosmosEndpoint::$(az cosmosdb show --name cosmosdb-copilot-nodejs-todo --resource-group rg-copilot-nodejs-todo --query documentEndpoint --output tsv)"
+      # Retrieve cosmos endpoint and key
+      - name: Retrieve cosmos credentials
+        run: |
+          echo "COSMOS_ENDPOINT=$(az cosmosdb show --name ${{ env.COSMOS_DB_NAME }} --resource-group rg-copilot-nodejs-todo --query documentEndpoint --output tsv)" >> $GITHUB_ENV
+          echo "COSMOS_KEY=$(az cosmosdb keys list --name ${{ env.COSMOS_DB_NAME }} --resource-group rg-copilot-nodejs-todo --query primaryMasterKey --output tsv)" >> $GITHUB_ENV
 
       # Set cosmos variables in web app
       - name: Set cosmos variables
-        run: az webapp config appsettings set --name copilot-nodejs-todo --resource-group rg-copilot-nodejs-todo --settings COSMOS_ENDPOINT=$(cosmosEndpoint) COSMOS_KEY=$(az cosmosdb keys list --name cosmosdb-copilot-nodejs-todo --resource-group rg-copilot-nodejs-todo --query primaryMasterKey --output tsv)
-
-
+        run: |
+          az webapp config appsettings set --name copilot-nodejs-todo --resource-group rg-copilot-nodejs-todo --settings COSMOS_ENDPOINT=${{ env.COSMOS_ENDPOINT }} COSMOS_KEY=${{ env.COSMOS_KEY }}
