@@ -36,7 +36,7 @@ jobs:
       - name: Create cosmosdb
         run: |
           export COSMOS_DB_NAME=copilot-nodejs-todo-${{ github.run_id }}
-          az cosmosdb create --name $COSMOS_DB_NAME --resource-group rg-copilot-nodejs-todo --locations regionName="East US" failoverPriority=0 isZoneRedundant=False
+          az cosmosdb create --name $COSMOS_DB_NAME --resource-group rg-copilot-nodejs-todo --locations regionName="Central US" failoverPriority=0 isZoneRedundant=False
           echo "COSMOS_DB_NAME=$COSMOS_DB_NAME" >> $GITHUB_ENV
 
 
