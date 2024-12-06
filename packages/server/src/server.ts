@@ -1,7 +1,8 @@
 import http from 'node:http';
 import app from './app';
 
-const port = process.env.PORT || '3000';
+// Use the port provided by Azure, or fallback to 8080
+const port = process.env.PORT || 8080;
 const server = http.createServer(app);
 
 server.listen(port, () => {
