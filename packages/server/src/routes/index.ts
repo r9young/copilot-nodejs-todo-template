@@ -13,8 +13,9 @@ router.get('/users/:userId/tasks', async function(req, res) {
     const { userId } = req.params;
 
     // TODO: get tasks from database
-    // const tasks: Task[] = [];
-    const tasks: Task[] = await DbService.getInstance().getTasks
+    // const tasks = [];
+    const tasks = await DbService.getInstance().getTasks(userId);
+
 
     res.json(tasks);
   } catch (error: any) {
