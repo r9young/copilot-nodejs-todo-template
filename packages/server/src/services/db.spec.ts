@@ -6,6 +6,7 @@ jest.mock('@azure/cosmos');
 
 describe('DbService', () => {
   beforeAll(() => {
+
     // Set environment variables
     process.env.COSMOS_ENDPOINT = 'dummy';
     process.env.COSMOS_KEY = '123';
