@@ -3,11 +3,19 @@ import { CosmosClient } from '@azure/cosmos';
 import { Task } from '../models/task';
 
 /**
- * Service to interact with the Azure Cosmos DB database
- * This service is responsible for all CRUD operations on the database
- * It uses the Azure Cosmos SDK to interact with the database
- * The service is initialized with the CosmosClient and the container
+ * This class provides a service for interacting with the Cosmos DB database.
+ * It is a singleton class, so only one instance of it will ever exist.
+ * @class
+ * @property {CosmosClient} client - The Cosmos DB client
+ * @property {any} database - The database
+ * @property {any} container - The container
+ * @method createTask - Create a new task
+ * @method getTask - Get a task by id
+ * @method getTasks - Get all tasks for a user
+ * @method updateTask - Update a task
+ * @method deleteTask - Delete a task
  */
+
 export class DbService {
 
   private client: CosmosClient;
