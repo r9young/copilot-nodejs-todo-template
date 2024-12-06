@@ -5,8 +5,9 @@ jest.mock('@azure/cosmos');
 describe('DbService', () => {
   beforeAll(() => {
     // Set environment variables
-    process.env.COSMOS_ENDPOINT = 'dummy';
-    process.env.COSMOS_KEY = '123';
+    process.env.COSMOS_ENDPOINT = 'https://copilot-nodejs-todo-12345.documents.azure.com:443/'; // New endpoint
+    process.env.COSMOS_KEY = 'K7dwOaJOg1acvABCmZBsOZgBu8rVnJJuQAUR3Uc0L3pHiRobFY4l0gVlrmTpIOJslY2wD2Dbf4ynACDbQ6IF6A=='; // Replace with your actual Cosmos DB primary key
+
 
     // Mock the Cosmos DB client
     const mockClient = {
