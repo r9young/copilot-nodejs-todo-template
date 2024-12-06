@@ -1,3 +1,5 @@
+Ref: https://moaw.dev/workshop/?src=gh%3Aazure-samples%2Fcopilot-nodejs-todo%2Fmain%2Fdocs%2F&step=5#
+
 # 🤖 copilot-nodejs-todo
 
 Discover how to use GitHub Copilot to quickly build a Node.js application with Azure Cosmos DB and App Service.
@@ -73,3 +75,5 @@ trademarks or logos is subject to and must follow
 [Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.
+
+
